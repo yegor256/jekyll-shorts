@@ -89,7 +89,7 @@ class JekyllShorts::Generator < Jekyll::Generator
       FileUtils.mkdir_p(File.dirname(path))
       html = "<html><head><meta charset='utf-8'/>\
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>\
-<meta http-equiv='refresh' content='#{@long}'/></head>\
+<meta http-equiv='refresh' content='#{@site.config['url']}#{@long}'/></head>\
 <body></body></html>"
       if File.exist?(path)
         before = File.read(path)
