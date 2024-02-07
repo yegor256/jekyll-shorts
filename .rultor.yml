@@ -1,0 +1,23 @@
+docker:
+  image: yegor256/rultor-image:1.22.0
+assets:
+  rubygems.yml: yegor256/home#assets/rubygems.yml
+install: |
+  pdd -f /dev/null
+  bundle install --no-color
+release:
+  pre: false
+  script: |-
+    bundle exec rake
+    rm -rf *.gem
+    sed -i "s/0\.0\.0/${tag}/g" jekyll-shorts.gemspec
+    sed -i "s/0\.0\.0/${tag}/g" lib/jekyll-shorts/version.rb
+    git add jekyll-shorts.gemspec
+    git add lib/jekyll-shorts/version.rb
+    git commit -m "version set to ${tag}"
+    gem build jekyll-shorts.gemspec
+    chmod 0600 ../rubygems.yml
+    gem push *.gem --config-file ../rubygems.yml
+merge:
+  script: |-
+    bundle exec rake
