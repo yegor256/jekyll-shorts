@@ -75,8 +75,19 @@ class JekyllShorts::Generator < Jekyll::Generator
     def write(_dest)
       FileUtils.mkdir_p(File.dirname(path))
       html = "<html><head><meta http-equiv='refresh' content='#{@long}'/></head></html>"
-      File.write(path, html)
-      Jekyll.logger.debug("HTML #{path.inspect} -> #{@long.inspect}")
+      if File.exist?(path)
+        before = File.read(path)
+        if before != after
+          raise "It's impossible to generate a short link at #{path.inspect}, \
+because the file already exists and the content \
+of the it differs from what we are going to write into it now (#{long}). This most \
+probably means that previously generated short link will point to a different location \
+than before. Try to run 'jekyll clean', it will help, if you know what you are doing."
+        end
+      else
+        File.write(path, html)
+        Jekyll.logger.debug("HTML #{path.inspect} -> #{@long.inspect}")
+      end
       true
     end
   end
