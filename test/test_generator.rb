@@ -49,4 +49,24 @@ class JekyllShorts::GeneratorTest < Minitest::Test
       gen.generate(site)
     end
   end
+
+  def test_two_similar_posts
+    Dir.mktmpdir do |home|
+      first = File.join(home, '2023-01-01-first.md')
+      File.write(first, "---\ntitle: Hello\n---\n\nHello, world!")
+      second = File.join(home, '2023-01-01-second.md')
+      File.write(second, "---\ntitle: Hello\n---\n\nHello, world!")
+      site = JekyllShorts::FakeSite.new(
+        {
+          'url' => 'https://www.yegor256.com/',
+          'shorts' => {
+            'permalink' => ':y:m:letter.html'
+          }
+        },
+        [first, second]
+      )
+      gen = JekyllShorts::Generator.new
+      gen.generate(site)
+    end
+  end
 end

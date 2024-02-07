@@ -45,20 +45,24 @@ class JekyllShorts::Generator < Jekyll::Generator
     permalink ||= config['permalink'] || ':year:month:day'
     start = Time.now
     total = 0
+    months = {}
     site.posts.docs.sort_by(&:url).each_with_index do |doc, pos|
       long = doc.url
+      month = doc.date.strftime('%Y%m')
+      months[month] = 0 if months[month].nil?
       short = Jekyll::URL.new(
         template: permalink,
         placeholders: {
-          'Y' => doc.date.year.to_s,
-          'y' => doc.date.year.to_s[2..],
-          'm' => doc.date.month.to_s.rjust(2, '0'),
-          'd' => doc.date.day.to_s.rjust(2, '0'),
-          'pos' => pos.to_s
+          'year' => doc.date.year.to_s[2..],
+          'month' => doc.date.month.to_s.rjust(2, '0'),
+          'day' => doc.date.day.to_s.rjust(2, '0'),
+          'letter' => (months[month] + 'a'.ord).chr,
+          'position' => pos.to_s
         }
       ).to_s
       site.static_files << ShortFile.new(site, short, long)
       doc.data['short-url'] = short
+      months[month] += 1
       total += 1
     end
     Jekyll.logger.info("jekyll-shorts #{JekyllShorts::VERSION}: \

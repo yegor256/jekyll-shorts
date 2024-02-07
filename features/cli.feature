@@ -8,7 +8,7 @@ Feature: Simple site building
     plugins:
       - jekyll-shorts
     shorts:
-      permalink: :y:m:d.html
+      permalink: :year:month:day.html
     """
     And I have a "_layouts/default.html" file with content:
     """
@@ -35,7 +35,7 @@ Feature: Simple site building
     plugins:
       - jekyll-shorts
     shorts:
-      permalink: :y.html
+      permalink: :year.html
     """
     And I have a "_layouts/default.html" file with content:
     """
@@ -62,3 +62,39 @@ Feature: Simple site building
     """
     And I build Jekyll site
     And Exit code is not zero
+
+  Scenario: Simple site
+    Given I have a "_config.yml" file with content:
+    """
+    markdown: kramdown
+    plugins:
+      - jekyll-shorts
+    shorts:
+      permalink: :year:month:letter.html
+    """
+    And I have a "_layouts/default.html" file with content:
+    """
+    {{ content }}
+    """
+    And I have a "_posts/2023-01-01-apple.md" file with content:
+    """
+    ---
+    title: Hello, world!
+    layout: default
+    ---
+    Hello, world!
+    """
+    Then I build Jekyll site
+    And Exit code is zero
+    And I have a "_posts/2023-01-02-apple.md" file with content:
+    """
+    ---
+    title: Hello, world!
+    layout: default
+    ---
+    Hello, world!
+    """
+    And I build Jekyll site
+    And Exit code is zero
+    And File "_site/2301a.html" exists
+    And File "_site/2301b.html" exists
