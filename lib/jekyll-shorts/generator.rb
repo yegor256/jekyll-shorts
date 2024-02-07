@@ -60,7 +60,8 @@ class JekyllShorts::Generator < Jekyll::Generator
       doc.data['short-url'] = short
       total += 1
     end
-    Jekyll.logger.info("jekyll-shorts #{JekyllShorts::VERSION}: #{total} link(s) generated in #{(Time.now - start).round(2)}s")
+    Jekyll.logger.info("jekyll-shorts #{JekyllShorts::VERSION}: \
+#{total} link(s) generated in #{(Time.now - start).round(2)}s")
   end
 
   # The HTML file with a redirect.
@@ -70,9 +71,9 @@ class JekyllShorts::Generator < Jekyll::Generator
       @long = long
     end
 
-    def write(dest)
+    def write(_dest)
       FileUtils.mkdir_p(File.dirname(path))
-      html = '<html> redirect to #{long}</html>'
+      html = "<html> redirect to #{@long}</html>"
       File.write(path, html)
       Jekyll.logger.info("HTML #{path.inspect} -> #{@long.inspect}")
       true
