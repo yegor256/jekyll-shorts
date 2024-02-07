@@ -74,7 +74,9 @@ class JekyllShorts::Generator < Jekyll::Generator
 
     def write(_dest)
       FileUtils.mkdir_p(File.dirname(path))
-      html = "<html><head><meta http-equiv='refresh' content='#{@long}'/></head></html>"
+      html = "<html><head><meta charset='utf-8'/>\
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>\
+<meta http-equiv='refresh' content='#{@long}'/></head></html>"
       if File.exist?(path)
         before = File.read(path)
         if before != after
