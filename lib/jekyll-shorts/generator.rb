@@ -87,10 +87,20 @@ class JekyllShorts::Generator < Jekyll::Generator
 
     def write(_dest)
       FileUtils.mkdir_p(File.dirname(path))
-      html = "<html><head><meta charset='utf-8'/>\
-<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>\
-<meta http-equiv='refresh' content='#{@site.config['url']}#{@long}'/></head>\
-<body></body></html>"
+      re = "#{@site.config['url']}#{@long}"
+      html = [
+        '<!DOCTYPE html>',
+        '<html lang="en-US">',
+        '<meta charset="utf-8">',
+        '<title>Redirecting&hellip;</title>',
+        "<link rel='canonical' href='#{re}'>",
+        "<script>location='#{re}'</script>",
+        "<meta http-equiv='refresh' content='0; url=#{re}'>",
+        '<meta name="robots" content="noindex">',
+        '<h1>Redirecting&hellip;</h1>',
+        "<a href='#{re}'>Click here if you are not redirected.</a>",
+        '</html>'
+      ].join
       if File.exist?(path)
         before = File.read(path)
         if before != html
