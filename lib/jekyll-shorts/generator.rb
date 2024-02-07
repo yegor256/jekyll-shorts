@@ -50,6 +50,7 @@ class JekyllShorts::Generator < Jekyll::Generator
       long = doc.url
       month = doc.date.strftime('%Y%m')
       months[month] = 0 if months[month].nil?
+      raise 'Too many letters' if months[month] >= 26
       short = Jekyll::URL.new(
         template: permalink,
         placeholders: {
