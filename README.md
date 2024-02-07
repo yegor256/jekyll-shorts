@@ -24,7 +24,15 @@ shorts:
 ```
 
 Here, every page in the site will get a sibling with the name 
-`:year:month:day.html`, which will redirect to the page itself.
+`:year:month:day.html`, which will redirect to the page itself. You can use:
+
+  * `:year` - the year of the post
+  * `:month` - the year of the post
+  * `:day` - the year of the post
+  * `:position` - the unique position of the post in the entire list of them
+
+Be careful with the `:position`, since it may change when you add a new post
+somewhere in the middle of existing flow of posts.
 
 ## How to Contribute
 
