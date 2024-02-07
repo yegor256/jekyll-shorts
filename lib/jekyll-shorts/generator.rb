@@ -45,7 +45,7 @@ class JekyllShorts::Generator < Jekyll::Generator
     permalink ||= config['permalink'] || ':year:month:day'
     start = Time.now
     total = 0
-    site.posts.docs.each_with_index do |doc, pos|
+    site.posts.docs.sort_by(&:url).each_with_index do |doc, pos|
       long = doc.url
       short = Jekyll::URL.new(
         template: permalink,
