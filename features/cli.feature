@@ -8,13 +8,13 @@ Feature: Simple site building
     plugins:
       - jekyll-shorts
     shorts:
-      permalink: :day.html
+      permalink: :y:m:d.html
     """
     And I have a "_layouts/default.html" file with content:
     """
     {{ content }}
     """
-    And I have a "_posts/2023-01-01-hello.md" file with content:
+    And I have a "_posts/2023-07-29-hello.md" file with content:
     """
     ---
     title: Hello, world!
@@ -24,4 +24,4 @@ Feature: Simple site building
     """
     Then I build Jekyll site
     And Exit code is zero
-    And File "_site/01.html" exists
+    And File "_site/230729.html" exists

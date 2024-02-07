@@ -25,10 +25,11 @@ shorts:
 Here, every page in the site will get a sibling with the name 
 `:year:month:day.html`, which will redirect to the page itself. You can use:
 
-  * `:year` - the year of the post
-  * `:month` - the year of the post
-  * `:day` - the year of the post
-  * `:position` - the unique position of the post in the entire list of them
+  * `:Y` - the full year of the post, like `2022` or `1976`
+  * `:y` - the short form of the year of the post, like `23` or `76`
+  * `:m` - the month of the post, like `01` or `12`
+  * `:d` - the day of the post, like `07` or `29`
+  * `:pos` - the unique position of the post in the entire list of them, like `42` or `256`
 
 Be careful with the `:position`, since it may change when you add a new post
 somewhere in the middle of existing flow of posts.

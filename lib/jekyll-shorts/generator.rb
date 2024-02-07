@@ -50,10 +50,11 @@ class JekyllShorts::Generator < Jekyll::Generator
       short = Jekyll::URL.new(
         template: permalink,
         placeholders: {
-          'year' => doc.date.year.to_s,
-          'month' => doc.date.month.to_s.rjust(2, '0'),
-          'day' => doc.date.day.to_s.rjust(2, '0'),
-          'position' => pos.to_s
+          'Y' => doc.date.year.to_s,
+          'y' => doc.date.year.to_s[2..],
+          'm' => doc.date.month.to_s.rjust(2, '0'),
+          'd' => doc.date.day.to_s.rjust(2, '0'),
+          'pos' => pos.to_s
         }
       ).to_s
       site.static_files << ShortFile.new(site, short, long)
@@ -73,9 +74,9 @@ class JekyllShorts::Generator < Jekyll::Generator
 
     def write(_dest)
       FileUtils.mkdir_p(File.dirname(path))
-      html = "<html> redirect to #{@long}</html>"
+      html = "<html><head><meta http-equiv='refresh' content='#{@long}'/></head></html>"
       File.write(path, html)
-      Jekyll.logger.info("HTML #{path.inspect} -> #{@long.inspect}")
+      Jekyll.logger.debug("HTML #{path.inspect} -> #{@long.inspect}")
       true
     end
   end
