@@ -29,7 +29,7 @@ Here, every page in the site will get a sibling with the name
   * `:month` - the month of the post, like `01` or `12`
   * `:day` - the day of the post, like `07` or `29`
   * `:position` - the unique position of the post in the entire list of them, like `42` or `256`
-  * `:letter` - one English letter inside a month
+  * `:letter` - one English letter inside a month (empty instead of `a`)
 
 Be careful with the `:position`, since it may change when you add a new post
 somewhere in the middle of existing flow of posts.

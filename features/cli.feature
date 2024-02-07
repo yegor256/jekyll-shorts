@@ -96,5 +96,5 @@ Feature: Simple site building
     """
     And I build Jekyll site
     And Exit code is zero
-    And File "_site/2301a.html" exists
+    And File "_site/2301.html" exists
     And File "_site/2301b.html" exists

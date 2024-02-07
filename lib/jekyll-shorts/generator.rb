@@ -57,7 +57,7 @@ class JekyllShorts::Generator < Jekyll::Generator
           'year' => doc.date.year.to_s[2..],
           'month' => doc.date.month.to_s.rjust(2, '0'),
           'day' => doc.date.day.to_s.rjust(2, '0'),
-          'letter' => (months[month] + 'a'.ord).chr,
+          'letter' => months[month].zero? ? '' : (months[month] + 'a'.ord).chr,
           'position' => pos.to_s
         }
       ).to_s
