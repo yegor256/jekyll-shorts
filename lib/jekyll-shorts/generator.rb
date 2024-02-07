@@ -77,11 +77,16 @@ class JekyllShorts::Generator < Jekyll::Generator
       @long = long
     end
 
+    def modified?
+      true
+    end
+
     def write(_dest)
       FileUtils.mkdir_p(File.dirname(path))
       html = "<html><head><meta charset='utf-8'/>\
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>\
-<meta http-equiv='refresh' content='#{@long}'/></head></html>"
+<meta http-equiv='refresh' content='#{@long}'/></head>\
+<body></body></html>"
       if File.exist?(path)
         before = File.read(path)
         if before != html
@@ -93,7 +98,7 @@ than before. Try to run 'jekyll clean', it will help, if you know what you are d
         end
       else
         File.write(path, html)
-        Jekyll.logger.debug("HTML #{path.inspect} -> #{@long.inspect}")
+        Jekyll.logger.debug("Short URL created from #{path.inspect} to #{@long.inspect}")
       end
       true
     end
