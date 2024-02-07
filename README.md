@@ -1,10 +1,9 @@
-<img src="logo.png" style="width:256px;"/>
-
 [![rake](https://github.com/yegor256/jekyll-shorts/actions/workflows/rake.yml/badge.svg)](https://github.com/yegor256/jekyll-shorts/actions/workflows/rake.yml)
 [![Gem Version](https://badge.fury.io/rb/jekyll-shorts.svg)](http://badge.fury.io/rb/jekyll-shorts)
 
 If you have a [Jekyll](https://jekyllrb.com/) static site, this plugin may help you automatically
-generate short links for every page.
+generate short links for every page. I'm using this plugin for 
+[my blog](https://github.com/yegor256/blog).
 
 Install it first (you need [Ruby 3+](https://www.ruby-lang.org/en/news/2020/12/25/ruby-3-0-0-released/) 
 and [Jekyll 3+](https://jekyllrb.com/)):
