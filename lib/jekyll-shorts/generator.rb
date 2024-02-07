@@ -82,7 +82,7 @@ class JekyllShorts::Generator < Jekyll::Generator
         if before != html
           raise "It's impossible to generate a short link at #{path.inspect}, \
 because the file already exists and the content \
-of the it differs from what we are going to write into it now (#{long}). This most \
+of the it differs from what we are going to write into it now (#{@long}). This most \
 probably means that previously generated short link will point to a different location \
 than before. Try to run 'jekyll clean', it will help, if you know what you are doing."
         end
