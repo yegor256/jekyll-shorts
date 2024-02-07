@@ -79,7 +79,7 @@ class JekyllShorts::Generator < Jekyll::Generator
 <meta http-equiv='refresh' content='#{@long}'/></head></html>"
       if File.exist?(path)
         before = File.read(path)
-        if before != after
+        if before != html
           raise "It's impossible to generate a short link at #{path.inspect}, \
 because the file already exists and the content \
 of the it differs from what we are going to write into it now (#{long}). This most \
