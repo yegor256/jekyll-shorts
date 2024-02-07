@@ -81,6 +81,10 @@ class JekyllShorts::Generator < Jekyll::Generator
       true
     end
 
+    def modified_time
+      Time.now
+    end
+
     def write(_dest)
       FileUtils.mkdir_p(File.dirname(path))
       html = "<html><head><meta charset='utf-8'/>\
