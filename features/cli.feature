@@ -25,3 +25,5 @@ Feature: Simple site building
     Then I build Jekyll site
     And Exit code is zero
     And File "_site/230729.html" exists
+    And I build Jekyll site
+    And Exit code is zero
