@@ -25,10 +25,9 @@
 require 'jekyll'
 require 'fileutils'
 require 'json'
+require 'securerandom'
 require_relative 'version'
-
-# The module we are in.
-module JekyllShorts; end
+require_relative 'letters'
 
 # Pages generator.
 # Author:: Yegor Bugayenko (yegor256@gmail.com)
@@ -40,30 +39,26 @@ class JekyllShorts::Generator < Jekyll::Generator
 
   # Main plugin action, called by Jekyll-core
   def generate(site)
-    Jekyll.logger.info("jekyll-shorts #{JekyllShorts::VERSION} starting...")
     config ||= site.config['shorts'] || {}
-    permalink ||= config['permalink'] || ':year:month:day'
+    permalink ||= config['permalink'] || ':year:month:day:letter.html'
     start = Time.now
     total = 0
-    months = {}
-    site.posts.docs.sort_by(&:url).each_with_index do |doc, pos|
+    letters = JekyllShorts::Letters.new
+    site.posts.docs.each do |doc|
       long = doc.url
-      month = doc.date.strftime('%Y%m')
-      months[month] = 0 if months[month].nil?
-      raise 'Too many letters' if months[month] >= 26
+      re = SecureRandom.hex(64)
       short = Jekyll::URL.new(
         template: permalink,
         placeholders: {
           'year' => doc.date.year.to_s[2..],
           'month' => doc.date.month.to_s.rjust(2, '0'),
           'day' => doc.date.day.to_s.rjust(2, '0'),
-          'letter' => months[month].zero? ? '' : (months[month] + 'a'.ord).chr,
-          'position' => pos.to_s
+          'letter' => re
         }
       ).to_s
+      short.sub!(re, letters.next(short.sub(re, '')))
       site.static_files << ShortFile.new(site, short, long)
       doc.data['short-url'] = short
-      months[month] += 1
       total += 1
     end
     Jekyll.logger.info("jekyll-shorts #{JekyllShorts::VERSION}: \

@@ -19,7 +19,7 @@ plugins:
   - ... your other plugins here ...
   - jekyll-shorts
 shorts:
-  permalink: :year:month:day.html
+  permalink: :year:month:day:letter.html
 ```
 
 Here, every page in the site will get a sibling with the name 
@@ -28,11 +28,14 @@ Here, every page in the site will get a sibling with the name
   * `:year` - the short form of the year of the post, like `23` or `76`
   * `:month` - the month of the post, like `01` or `12`
   * `:day` - the day of the post, like `07` or `29`
-  * `:position` - the unique position of the post in the entire list of them, like `42` or `256`
-  * `:letter` - one English letter inside a month (empty instead of `a`)
+  * `:letter` - a unique English letter for a short URL, like `a`, `b`, etc.
 
-Be careful with the `:position`, since it may change when you add a new post
-somewhere in the middle of existing flow of posts.
+If you don't use the `:letter`, you may end up with duplicated URLs. For example,
+you have two pages written in 2023-11-23. Their URLs will be the same, if the 
+`permalink` is `:year:month:day.html`, as in the example above. With the help of the `:letter`,
+two URLs become different.
+
+Inside the Jekyll page, you can use `{{ page.short-url }}` for the value of the short URL.
 
 ## How to Contribute
 
