@@ -27,5 +27,5 @@
 # Copyright:: Copyright (c) 2024 Yegor Bugayenko
 # License:: MIT
 module JekyllShorts
-  VERSION = '0.0.0'
+  VERSION = '0.0.10'
 end
