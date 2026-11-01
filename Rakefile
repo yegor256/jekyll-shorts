@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# SPDX-FileCopyrightText: Copyright (c) 2024 Yegor Bugayenko
+# SPDX-FileCopyrightText: Copyright (c) 2024-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 
 require 'rubygems'
@@ -52,6 +52,7 @@ Cucumber::Rake::Task.new(:'features:html') do |t|
   t.profile = 'html_report'
 end
 
+desc 'Check that every source file mentions the current year'
 task :copyright do
   sh "grep -q -r '#{Date.today.strftime('%Y')}' \
     --include '*.rb' \

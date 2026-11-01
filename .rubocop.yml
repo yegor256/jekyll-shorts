@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: Copyright (c) 2024 Yegor Bugayenko
+# SPDX-FileCopyrightText: Copyright (c) 2024-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 ---
 AllCops:
@@ -40,7 +40,10 @@ Metrics/ClassLength:
   Max: 200
 Style/ClassVars:
   Enabled: false
-require:
+Naming/PredicateMethod:
+  AllowedMethods:
+    - write
+plugins:
   - rubocop-rake
   - rubocop-minitest
   - rubocop-performance
