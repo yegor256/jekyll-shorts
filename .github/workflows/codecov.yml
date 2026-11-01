@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: Copyright (c) 2024 Yegor Bugayenko
+# SPDX-FileCopyrightText: Copyright (c) 2024-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 ---
 # yamllint disable rule:line-length
@@ -10,12 +10,12 @@ name: codecov
 jobs:
   codecov:
     timeout-minutes: 15
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3
+          ruby-version: 3.4
           bundler-cache: true
       - run: sudo apt-get install --yes plantuml
       - run: bundle config set --global path "$(pwd)/vendor/bundle"

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# SPDX-FileCopyrightText: Copyright (c) 2024 Yegor Bugayenko
+# SPDX-FileCopyrightText: Copyright (c) 2024-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 
 require 'jekyll'
@@ -12,7 +12,7 @@ require_relative 'letters'
 
 # Pages generator.
 # Author:: Yegor Bugayenko (yegor256@gmail.com)
-# Copyright:: Copyright (c) 2024 Yegor Bugayenko
+# Copyright:: Copyright (c) 2024-2026 Yegor Bugayenko
 # License:: MIT
 class JekyllShorts::Generator < Jekyll::Generator
   safe true
