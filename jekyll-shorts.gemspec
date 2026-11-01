@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# SPDX-FileCopyrightText: Copyright (c) 2024 Yegor Bugayenko
+# SPDX-FileCopyrightText: Copyright (c) 2024-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 
 require 'English'
@@ -23,6 +23,6 @@ Gem::Specification.new do |s|
   s.executables = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.rdoc_options = ['--charset=UTF-8']
   s.extra_rdoc_files = %w[README.md LICENSE.txt]
-  s.add_runtime_dependency 'jekyll', '>= 3'
+  s.add_dependency 'jekyll', '>= 3'
   s.metadata['rubygems_mfa_required'] = 'true'
 end
