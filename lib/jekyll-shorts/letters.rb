@@ -17,7 +17,7 @@ class JekyllShorts::Letters
   # Next one for this mnemo.
   def next(mnemo)
     @mnemos[mnemo] = 0 if @mnemos[mnemo].nil?
-    raise 'Too many letters' if @mnemos[mnemo] >= 26
+    raise 'Too many letters' if @mnemos[mnemo] > 26
     letter = @mnemos[mnemo].zero? ? '' : (@mnemos[mnemo] + 'a'.ord - 1).chr
     @mnemos[mnemo] += 1
     letter

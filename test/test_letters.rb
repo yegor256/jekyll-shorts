@@ -21,6 +21,21 @@ class JekyllShorts::LettersTest < Minitest::Test
     assert_equal('b', letters.next(mnemo))
   end
 
+  def test_last_letter
+    letters = JekyllShorts::Letters.new
+    26.times { letters.next('hey') }
+
+    assert_equal('z', letters.next('hey'))
+  end
+
+  def test_exhausted_letters
+    letters = JekyllShorts::Letters.new
+    27.times { letters.next('hey') }
+
+    error = assert_raises(RuntimeError) { letters.next('hey') }
+    assert_equal('Too many letters', error.message)
+  end
+
   def test_different_mnemo
     letters = JekyllShorts::Letters.new
     letters.next('hey')
